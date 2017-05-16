@@ -252,6 +252,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 4M5A36G82A;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				"MTL_ENABLE_DEBUG_INFO[arch=*]" = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

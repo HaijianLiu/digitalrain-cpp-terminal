@@ -31,6 +31,7 @@ private:
   int length;
   float timer;
   int i;
+  void InitRain();
 };
 
 #endif /* Rain_hpp */

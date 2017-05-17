@@ -8,16 +8,20 @@
 
 #include "Rain.hpp"
 
-Rain::Rain(){
-  startASC = 48; // random characters starts from ASCII (48 means '0')
-  rangeASC = 75; // how many characters to random (78 means from '0' to 'z')
-  timer = std::stof(tm.CurrentTime()) + (float)(random()%10); // set timer to zero
-  // get stdscr size to initialize the start point
+void Rain::InitRain(){
   getmaxyx(stdscr,stdscrY,stdscrX);
   startX = rand()%stdscrX; // random: rain start point coordinate X
   delay = 50+rand()%101; // random speed: 4 levels
   length = 5*(rand()%2+2); // random length: 2 levels
   i = 0; // counter
+}
+
+Rain::Rain(){
+  startASC = 48; // random characters starts from ASCII (48 means '0')
+  rangeASC = 75; // how many characters to random (78 means from '0' to 'z')
+  timer = std::stof(tm.CurrentTime()) + (float)(random()%10); // set timer to zero
+  // get stdscr size to initialize the start point
+  Rain::InitRain();
 }
 
 void Rain::Fall(){
@@ -41,11 +45,7 @@ void Rain::Fall(){
       i++; // update counter
     }else{
       // the rain is over then restart a new one
-      getmaxyx(stdscr,stdscrY,stdscrX); // get stdscr size to initialize the start point
-      startX = rand()%stdscrX; // random: rain start point coordinate X
-      delay = 50+rand()%101; // random speed: 4 levels
-      length = 5*(rand()%2+2); // random length: 2 levels
-      i = 0; // counter
+      Rain::InitRain();
     }
     // update timer
     timer = std::stof(tm.CurrentTime()) + (float)delay*0.001;
